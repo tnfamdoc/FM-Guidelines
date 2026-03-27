@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FM Guidelines Reference</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FM Guidelines">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: #d0d7e2;
+    --accent: #1a56db;
+    --accent2: #0e7c6b;
+    --danger: #c0392b;
+    --text: #1a2332;
+    --text-dim: #6b7a90;
+    --text-bright: #0f1923;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .logo span { color: var(--text-dim); }
+
+  .header-right {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .specialty-bar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: wrap;
+  }
+
+  .specialty-bar::-webkit-scrollbar { display: none; }
+
+  .spec-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .spec-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .spec-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 24px 100px;
+    gap: 16px;
+  }
+
+  .response-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .spec-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .query-echo {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+
+  .response-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-bright);
+  }
+
+  .response-body p { margin-bottom: 10px; }
+  .response-body p:last-child { margin-bottom: 0; }
+  .response-body strong { color: var(--accent); font-weight: 600; }
+  .response-body ul, .response-body ol { padding-left: 20px; margin-bottom: 10px; }
+  .response-body li { margin-bottom: 4px; }
+
+  .response-footer {
+    padding: 10px 16px 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+  }
+
+  .explain-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+
+  .explain-btn:hover { background: var(--accent); color: #fff; }
+  .explain-btn:disabled { border-color: var(--border); color: var(--text-dim); cursor: not-allowed; }
+
+  .explain-body {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text);
+    background: #f9fbff;
+  }
+
+  .explain-body p { margin-bottom: 8px; }
+  .explain-body p:last-child { margin-bottom: 0; }
+  .explain-body strong { color: var(--accent); font-weight: 600; }
+  .explain-body ul { padding-left: 20px; }
+  .explain-body li { margin-bottom: 4px; }
+
+  .thinking {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .pulse-dots { display: flex; gap: 4px; }
+
+  .pulse-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  .pulse-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .pulse-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  .history-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0.65;
+  }
+
+  .history-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 0 4px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+
+  .expand-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  .input-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 16px 24px;
+    z-index: 100;
+  }
+
+  .input-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .input-wrap { flex: 1; }
+
+  textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-bright);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 12px 16px;
+    resize: none;
+    min-height: 48px;
+    max-height: 120px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea:focus { border-color: var(--accent); }
+  textarea::placeholder { color: var(--text-dim); }
+
+  .send-btn {
+    background: var(--accent);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    height: 48px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .send-btn:hover { background: #1446b8; }
+  .send-btn:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
+
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-dim);
+  }
+
+  .empty-state .big {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto 24px;
+  }
+
+  .example-queries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .example-q {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .example-q:hover { border-color: var(--accent); color: var(--accent); }
+
+  .error-msg {
+    color: var(--danger);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 16px 20px;
+  }
+
+  @media (max-width: 600px) {
+    .specialty-bar { padding: 10px 12px; }
+    main { padding: 16px 12px 100px; }
+    .input-dock { padding: 12px; }
+    header { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FM<span>//</span>Guidelines <span>· Reference</span></div>
+  <div class="header-right">ACC · AHA · ADA · USPSTF · ACOG</div>
+</header>
+
+<div class="specialty-bar" id="specBar">
+  <button class="spec-btn active" data-spec="General">General</button>
+  <button class="spec-btn" data-spec="Cardiovascular">Cardiovascular</button>
+  <button class="spec-btn" data-spec="Endocrinology">Endocrinology</button>
+  <button class="spec-btn" data-spec="Nephrology">Nephrology</button>
+  <button class="spec-btn" data-spec="Pulmonology">Pulmonology</button>
+  <button class="spec-btn" data-spec="Mental Health">Mental Health</button>
+  <button class="spec-btn" data-spec="Musculoskeletal">Musculoskeletal</button>
+  <button class="spec-btn" data-spec="Women's Health">Women's Health</button>
+  <button class="spec-btn" data-spec="Preventive Medicine">Preventive Medicine</button>
+  <button class="spec-btn" data-spec="Geriatrics">Geriatrics</button>
+  <button class="spec-btn" data-spec="Infectious Disease">Infectious Disease</button>
+</div>
+
+<main>
+  <div id="response-area">
+    <div class="empty-state" id="emptyState">
+      <div class="big">Ready</div>
+      <p>Select a specialty and ask a guideline question. Answers reflect current ACC/AHA, ADA, USPSTF, and specialty society recommendations.</p>
+      <div class="example-queries">
+        <div class="example-q" id="eq1">BP target in DM2?</div>
+        <div class="example-q" id="eq2">First-line statin for ASCVD risk 12%?</div>
+        <div class="example-q" id="eq3">HFrEF four pillars of GDMT?</div>
+        <div class="example-q" id="eq4">CHA₂DS₂-VASc threshold for anticoagulation?</div>
+        <div class="example-q" id="eq5">HbA1c target in elderly DM2?</div>
+        <div class="example-q" id="eq6">When to screen for colorectal cancer?</div>
+      </div>
+    </div>
+    <div id="currentResponse"></div>
+  </div>
+  <div id="historyWrap" style="display:none">
+    <div class="history-label">Previous queries</div>
+    <div id="history"></div>
+  </div>
+</main>
+
+<div class="input-dock">
+  <div class="input-inner">
+    <div class="input-wrap">
+      <textarea id="queryInput" placeholder="Ask a guideline question..." rows="1"></textarea>
+    </div>
+    <button class="send-btn" id="sendBtn">Ask</button>
+  </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `You are a clinical reference tool embedded in a Family Medicine residency precepting room. You answer like a sharp, experienced clinician giving a quick curbside — direct, confident, and clear. Not a textbook. Not a legal brief.
+
+Source authority: ACC, AHA, ADA, KDIGO, USPSTF, ACOG, AAFP, and other major specialty society guidelines. Always reflect the most current published recommendations.
+
+Voice and style:
+- Sound like a knowledgeable colleague, not a committee report. Use plain clinical language.
+- Lead immediately with the answer — no preamble, no restating the question.
+- Be concise. 3-5 sentences for most questions. Short bulleted list only when listing multiple drugs, criteria, or thresholds.
+- Use standard abbreviations freely (HFrEF, AFib, DOAC, ACEi, GDMT, DM2, HTN, CKD, ASCVD, etc.).
+
+Teaching and clarity rules:
+- Always define classification systems and staging criteria inline on first use. Examples: "A3 (severely increased albuminuria >300 mg/g)", "CKD G3a (GFR 45-59)", "Class IIb (weak recommendation, may be reasonable)".
+- Define guideline recommendation classes inline: Class I = strongly recommended; Class IIa = reasonable; Class IIb = may be reasonable; Class III = not recommended or harmful.
+- If a scoring system is used (CHA2DS2-VASc, HEART score, NYHA class, etc.), briefly note what it measures on first use.
+
+Content rules:
+- Always cite the guideline source and class of recommendation when relevant.
+- When two societies disagree, say so explicitly and give both positions. Do not silently pick one.
+- Flag genuine uncertainty or weak evidence rather than projecting false confidence.
+- If the question is outside established guidelines, say so cleanly rather than extrapolating.
+- Do not explain trial history or evidence basis unless asked.
+- No disclaimers, no motivational framing.
+
+Audience: FM residents preparing for in-training exams and the ABFM board exam. Accuracy and clinical utility are the whole point.`;
+
+// Fast-moving domains that trigger live web search
+const SEARCH_TERMS = [
+  'diabet','insulin','metformin','glp','sglt','hba1c','glucose','hypoglyc','thyroid','a1c',
+  'semaglutide','tirzepatide','ozempic','wegovy','mounjaro',
+  'statin','ldl','cholesterol','pcsk9','ezetimibe','lipid','triglycerid',
+  'cancer screen','mammograph','colonoscop','colorectal','lung screen','cervical','pap','prostate screen','uspstf',
+  'heart fail','hfref','hfpef','hfmref','gdmt','sacubitril','dapagliflozin','empagliflozin',
+  'anticoagul','doac','apixaban','rivaroxaban','dabigatran','edoxaban',
+  'hiv','antiretroviral','prep',
+  'prenatal','obstetric','gestational','preeclampsi','contracepti','menopause','hormone therapy',
+  'vaccin','immuniz',
+  'obesity','weight loss','bmi'
+];
+
+let selectedSpec = 'General';
+let isLoading = false;
+let queryStore = {};
+
+// Specialty selector
+document.getElementById('specBar').addEventListener('click', function(e) {
+  if (e.target.classList.contains('spec-btn')) {
+    document.querySelectorAll('.spec-btn').forEach(function(b) { b.classList.remove('active'); });
+    e.target.classList.add('active');
+    selectedSpec = e.target.dataset.spec;
+  }
+});
+
+// Example queries
+document.querySelectorAll('.example-q').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('queryInput').value = el.textContent;
+    document.getElementById('queryInput').focus();
+  });
+});
+
+// Auto-resize textarea
+var ta = document.getElementById('queryInput');
+ta.addEventListener('input', function() {
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 120) + 'px';
+});
+
+ta.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendQuery();
+  }
+});
+
+document.getElementById('sendBtn').addEventListener('click', sendQuery);
+
+function needsWebSearch(query) {
+  var q = query.toLowerCase();
+  return SEARCH_TERMS.some(function(term) { return q.indexOf(term) !== -1; });
+}
+
+function formatResponse(text) {
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  var lines = text.split('\n');
+  var html = '';
+  var inList = false;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line) {
+      if (inList) { html += '</ul>'; inList = false; }
+      continue;
+    }
+    if (line.indexOf('- ') === 0 || line.indexOf('• ') === 0) {
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += '<li>' + line.slice(2) + '</li>';
+    } else if (/^\d+\.\s/.test(line)) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<p>' + line + '</p>';
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<p>' + line + '</p>';
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+
+async function sendQuery() {
+  var query = ta.value.trim();
+  if (!query || isLoading) return;
+
+  isLoading = true;
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('emptyState').style.display = 'none';
+
+  // Push current to history
+  var currentEl = document.getElementById('currentResponse');
+  if (currentEl.innerHTML) {
+    pushToHistory();
+  }
+
+  var useSearch = needsWebSearch(query);
+  var userMessage = selectedSpec !== 'General' ? '[' + selectedSpec + '] ' + query : query;
+
+  currentEl.innerHTML =
+    '<div class="response-card">' +
+      '<div class="response-header">' +
+        '<span class="spec-tag">' + selectedSpec + '</span>' +
+        '<span class="query-echo">' + query + '</span>' +
+      '</div>' +
+      '<div class="thinking">' +
+        '<div class="pulse-dots"><span></span><span></span><span></span></div>' +
+        (useSearch ? 'Searching current guidelines...' : 'Querying guidelines...') +
+      '</div>' +
+    '</div>';
+
+  ta.value = '';
+  ta.style.height = 'auto';
+
+  try {
+    var requestBody = {
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: userMessage }]
+    };
+
+    if (useSearch) {
+      requestBody.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
+    }
+
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    });
+
+    var data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+
+    var text = (data.content || [])
+      .filter(function(b) { return b.type === 'text'; })
+      .map(function(b) { return b.text; })
+      .join('\n') || 'No response received.';
+
+    var cardId = 'card-' + Date.now();
+    currentEl.innerHTML =
+      '<div class="response-card" id="' + cardId + '">' +
+        '<div class="response-header">' +
+          '<span class="spec-tag">' + selectedSpec + '</span>' +
+          '<span class="query-echo">' + query + '</span>' +
+          (useSearch ? '<span class="search-badge">⟳ live</span>' : '') +
+        '</div>' +
+        '<div class="response-body">' + formatResponse(text) + '</div>' +
+        '<div class="response-footer">' +
+          '<button class="explain-btn" id="xbtn-' + cardId + '">Explain further</button>' +
+        '</div>' +
+      '</div>';
+
+    // Store data and attach listener cleanly
+    queryStore[cardId] = { query: query, text: text };
+    document.getElementById('xbtn-' + cardId).addEventListener('click', function() {
+      explainFurther(cardId);
+    });
+
+  } catch(err) {
+    currentEl.innerHTML =
+      '<div class="response-card">' +
+        '<div class="response-header">' +
+          '<span class="spec-tag">' + selectedSpec + '</span>' +
+          '<span class="query-echo">' + query + '</span>' +
+        '</div>' +
+        '<div class="error-msg">Error: ' + err.message + '</div>' +
+      '</div>';
+  }
+
+  isLoading = false;
+  document.getElementById('sendBtn').disabled = false;
+}
+
+function pushToHistory() {
+  var currentEl = document.getElementById('currentResponse');
+  if (!currentEl.innerHTML) return;
+
+  var histWrap = document.getElementById('historyWrap');
+  var histEl = document.getElementById('history');
+  histWrap.style.display = 'block';
+
+  var clone = document.createElement('div');
+  clone.className = 'history-card';
+  clone.innerHTML = currentEl.innerHTML;
+
+  // Remove explain button from history cards
+  var footer = clone.querySelector('.response-footer');
+  if (footer) footer.remove();
+
+  // Remove explain body if present
+  var explainBody = clone.querySelector('.explain-body');
+  if (explainBody) explainBody.remove();
+
+  var header = clone.querySelector('.response-header');
+  var body = clone.querySelector('.response-body');
+  if (header && body) {
+    body.style.display = 'none';
+    var expandBtn = document.createElement('button');
+    expandBtn.className = 'expand-btn';
+    expandBtn.textContent = '▸';
+    header.appendChild(expandBtn);
+    header.style.cursor = 'pointer';
+    header.addEventListener('click', function() {
+      var shown = body.style.display !== 'none';
+      body.style.display = shown ? 'none' : 'block';
+      expandBtn.textContent = shown ? '▸' : '▾';
+      clone.style.opacity = shown ? '0.65' : '1';
+    });
+  }
+
+  histEl.insertBefore(clone, histEl.firstChild);
+}
+
+async function explainFurther(cardId) {
+  var card = document.getElementById(cardId);
+  if (!card) return;
+
+  var btn = document.getElementById('xbtn-' + cardId);
+  var existing = card.querySelector('.explain-body');
+  if (existing) {
+    existing.remove();
+    if (btn) btn.textContent = 'Explain further';
+    return;
+  }
+
+  if (btn) btn.disabled = true;
+
+  var stored = queryStore[cardId];
+  if (!stored) return;
+
+  var expandEl = document.createElement('div');
+  expandEl.className = 'explain-body';
+  expandEl.innerHTML =
+    '<div class="thinking">' +
+      '<div class="pulse-dots"><span></span><span></span><span></span></div>' +
+      'Expanding...' +
+    '</div>';
+  card.appendChild(expandEl);
+
+  try {
+    var prompt = 'A Family Medicine resident just received this guideline answer:\n\n"' +
+      stored.text + '"\n\nOriginal question: "' + stored.query + '"\n\n' +
+      'Expand for teaching: clarify any classification systems, staging, or abbreviations used. ' +
+      'Add 1-2 board-relevant pearls the resident should remember. ' +
+      'One short paragraph only. Do not repeat what was already said.';
+
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 600,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    var data = await resp.json();
+    if (data.error) throw new Error(data.error.message);
+
+    var text = (data.content || [])
+      .filter(function(b) { return b.type === 'text'; })
+      .map(function(b) { return b.text; })
+      .join('\n') || '';
+
+    expandEl.innerHTML = formatResponse(text);
+    if (btn) { btn.disabled = false; btn.textContent = 'Collapse'; }
+
+  } catch(err) {
+    expandEl.innerHTML = '<span style="color:var(--danger);font-size:12px">Error: ' + err.message + '</span>';
+    if (btn) btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
